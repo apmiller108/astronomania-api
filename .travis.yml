@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.4.1
+cache: bundler
+dist: trusty
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database astronomaniaapi_test;' -U postgres
