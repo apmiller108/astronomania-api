@@ -2,16 +2,14 @@ require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-require "json_matchers/rspec"
-require "rspec"
+abort('The Rails environment is running in production mode!') if Rails.env.production?
+require 'json_matchers/rspec'
+require 'rspec'
 require 'rspec/rails'
-require "rspec/expectations"
-require "rspec/json_expectations"
-require 'sidekiq/testing'
+require 'rspec/expectations'
+require 'rspec/json_expectations'
 require 'spec_helper'
 require 'webmock/rspec'
-require 'paperclip/matchers'
 
 ActiveRecord::Migration.maintain_test_schema!
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
