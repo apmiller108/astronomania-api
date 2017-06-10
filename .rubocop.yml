@@ -1,0 +1,17 @@
+AllCops: 
+  TargetRubyVersion: 2.4
+
+# Metrics
+Metrics/BlockLength:
+  Exclude:
+    - !ruby/regexp /_spec\.rb$/
+
+# Style
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
