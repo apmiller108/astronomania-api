@@ -14,7 +14,7 @@ describe 'User logs in' do
     end
 
     before :each do
-      post tokens_path,
+      post json_web_tokens_path,
            params: valid_credentials,
            as: :json
     end
@@ -24,9 +24,11 @@ describe 'User logs in' do
     end
 
     it 'reponds with the token API schema' do
+      expect(response).to match_response_schema('auth_token')
     end
 
     it 'responds with an auth token' do
+      expect(json['auth_token']).to_not be nil
     end
   end
 
@@ -41,7 +43,7 @@ describe 'User logs in' do
     end
 
     it 'responds with 404 status' do
-      post tokens_path, params: invalid_credentials, as: :json
+      post json_web_tokens_path, params: invalid_credentials, as: :json
 
       expect(response).to have_http_status :not_found
     end
@@ -58,7 +60,7 @@ describe 'User logs in' do
     end
 
     it 'responds with 404 status' do
-      post tokens_path, params: invalid_credentials, as: :json
+      post json_web_tokens_path, params: invalid_credentials, as: :json
 
       expect(response).to have_http_status :not_found
     end

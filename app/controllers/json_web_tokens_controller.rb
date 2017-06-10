@@ -1,10 +1,12 @@
-class TokensController < ApplicationController
+class JsonWebTokensController < ApplicationController
   def create
     user = User.find_by_email! token_params[:email]
 
     if user.authenticate(token_params[:password])
-      render json: 'token',
-             serializer: TokenSerializer,
+      token = JsonWebToken.new(payload: { user_id: user.id })
+      render json: token,
+             serializer: JsonWebTokenSerializer,
+             adapter: :attributes,
              status: :ok
     else
       render_not_found
