@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": ["auth_token"],
+  "properties": {
+    "auth_token": {
+      "type": "string"
+    }
+  }
+}
