@@ -1,0 +1,5 @@
+---
+exclude_paths:
+  - Dockerfile
+  - Gemfile
+  - db/schema.rb

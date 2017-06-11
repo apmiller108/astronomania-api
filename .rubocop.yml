@@ -6,6 +6,12 @@ Metrics/BlockLength:
   Exclude:
     - !ruby/regexp /_spec\.rb$/
 
+Metrics/LineLength:
+  Max: 80
+  Include:
+    - 'app/**/*'
+    - 'spec/**/*'
+
 # Style
 Style/Documentation:
   Enabled: false
