@@ -73,6 +73,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
+    faraday (0.12.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     foreman (0.84.0)
       thor (~> 0.19.1)
@@ -101,6 +103,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.2)
+    multipart-post (2.0.0)
     nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
@@ -224,6 +227,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
+  faraday
   foreman
   json_matchers
   jwt
