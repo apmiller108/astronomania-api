@@ -9,6 +9,7 @@ end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faraday'
 gem 'jwt'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
