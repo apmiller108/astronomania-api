@@ -8,8 +8,8 @@ module DataImport
 
     def initialize
       @conn = Faraday.new(url: BASE_URL)
-      @loader = DataImport::AsteroidPageLoader.new
-      @page_num = 1
+      @loader = DataImport::PageLoader.new('asteroid')
+      @page_num = 0
       @total_pages = 0
     end
 
@@ -19,11 +19,28 @@ module DataImport
         req.params[:size] = 20
         req.params[:api_key] = 'DEMO_KEY'
       end
-      p JSON.parse(response.body)
+      process_response response
+      # call unless page_num == total_pages
     end
 
     private
 
-    attr_reader :conn, :page_num, :total_pages
+    def json(response)
+      JSON.parse(response.body)
+    end
+
+    def process_response(response)
+      parsed_body = json(response)
+      update_pagination parsed_body
+      @loader.process parsed_body['near_earth_objects']
+    end
+
+    def update_pagination(response_body)
+      self.page_num = response_body['page']['number']
+      self.total_pages = response_body['page']['total_pages']
+    end
+
+    attr_reader :conn
+    attr_accessor :page_num, :total_pages
   end
 end
