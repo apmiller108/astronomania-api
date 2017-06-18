@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :asteroid_close_approach, class: 'Asteroid::CloseApproach' do
     close_approach_date '1945-06-07'
-    epoch_date_close_approach(-775328400000)
+    epoch_date_close_approach '-775328400000'
     relative_velocity(
       "kilometers_per_second" => 15.5095198576,
       "kilometers_per_hour" => 55_834.2714874122,

@@ -6,8 +6,7 @@ module Asteroid
 
     has_one :orbit,
             class_name: 'Asteroid::Orbit',
-            foreign_key: :asteroid_near_earth_object_neo_reference_id,
-            primary_key: :orbit_id
+            foreign_key: :asteroid_near_earth_object_neo_reference_id
 
     validates :name,
               :absolute_magnitude_h,

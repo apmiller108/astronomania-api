@@ -20,6 +20,7 @@ class CreateAsteroidOrbits < ActiveRecord::Migration[5.1]
       t.decimal :mean_motion, null: false
       t.string :equinox, null: false
       t.string :asteroid_near_earth_object_neo_reference_id
+      t.timestamps
     end
 
     add_foreign_key :asteroid_orbits,
@@ -31,5 +32,7 @@ class CreateAsteroidOrbits < ActiveRecord::Migration[5.1]
     add_index :asteroid_orbits,
               :asteroid_near_earth_object_neo_reference_id,
               name: :orbit_by_asteroid_near_earth_object_neo_reference_id
+
+    execute 'ALTER TABLE asteroid_orbits ADD PRIMARY KEY (orbit_id);'
   end
 end

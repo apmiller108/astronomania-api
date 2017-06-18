@@ -17,16 +17,17 @@ ActiveRecord::Schema.define(version: 20170618150950) do
 
   create_table "asteroid_close_approaches", force: :cascade do |t|
     t.date "close_approach_date", null: false
-    t.integer "epoch_date_close_approach", null: false
+    t.string "epoch_date_close_approach", null: false
     t.jsonb "relative_velocity", default: {}, null: false
     t.jsonb "miss_distance", default: {}, null: false
     t.string "orbiting_body"
     t.string "asteroid_near_earth_object_neo_reference_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["asteroid_near_earth_object_neo_reference_id"], name: "by_asteroid_near_earth_object_neo_reference_id"
   end
 
-  create_table "asteroid_near_earth_objects", id: false, force: :cascade do |t|
-    t.string "neo_reference_id", null: false
+  create_table "asteroid_near_earth_objects", primary_key: "neo_reference_id", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.string "nasa_jpl_url"
     t.float "absolute_magnitude_h", null: false
@@ -34,11 +35,9 @@ ActiveRecord::Schema.define(version: 20170618150950) do
     t.boolean "is_potentially_hazardous_asteroid", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["neo_reference_id"], name: "index_asteroid_near_earth_objects_on_neo_reference_id", unique: true
   end
 
-  create_table "asteroid_orbits", id: false, force: :cascade do |t|
-    t.integer "orbit_id", null: false
+  create_table "asteroid_orbits", primary_key: "orbit_id", id: :integer, default: nil, force: :cascade do |t|
     t.datetime "orbit_determination_date", null: false
     t.integer "orbit_uncertainty", null: false
     t.decimal "minimum_orbit_intersection", null: false
@@ -57,6 +56,8 @@ ActiveRecord::Schema.define(version: 20170618150950) do
     t.decimal "mean_motion", null: false
     t.string "equinox", null: false
     t.string "asteroid_near_earth_object_neo_reference_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["asteroid_near_earth_object_neo_reference_id"], name: "orbit_by_asteroid_near_earth_object_neo_reference_id"
   end
 

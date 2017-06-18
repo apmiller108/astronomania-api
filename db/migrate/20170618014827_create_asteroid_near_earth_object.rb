@@ -12,6 +12,9 @@ class CreateAsteroidNearEarthObject < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :asteroid_near_earth_objects, :neo_reference_id, unique: true
+    execute(
+      "ALTER TABLE asteroid_near_earth_objects ADD PRIMARY KEY"\
+      "(neo_reference_id);"
+    )
   end
 end
