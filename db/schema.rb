@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618014827) do
+ActiveRecord::Schema.define(version: 20170618132521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "asteroid_close_approaches", id: false, force: :cascade do |t|
+    t.integer "orbital_id", null: false
+    t.date "close_approach_date", null: false
+    t.integer "epoch_date_close_approach", null: false
+    t.jsonb "relative_velocity", default: {}, null: false
+    t.jsonb "miss_distance", default: {}, null: false
+    t.string "orbiting_body"
+    t.string "asteroid_near_earth_object_neo_reference_id"
+    t.index ["asteroid_near_earth_object_neo_reference_id"], name: "by_asteroid_near_earth_object_neo_reference_id"
+    t.index ["orbital_id"], name: "index_asteroid_close_approaches_on_orbital_id", unique: true
+  end
 
   create_table "asteroid_near_earth_objects", id: false, force: :cascade do |t|
     t.string "neo_reference_id", null: false
@@ -35,4 +47,5 @@ ActiveRecord::Schema.define(version: 20170618014827) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "asteroid_close_approaches", "asteroid_near_earth_objects", column: "asteroid_near_earth_object_neo_reference_id", primary_key: "neo_reference_id", on_delete: :cascade
 end
