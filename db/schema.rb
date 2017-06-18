@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170618014827) do
     t.string "neo_reference_id", null: false
     t.string "name", null: false
     t.string "nasa_jpl_url"
-    t.float "absolute_magnitude", null: false
+    t.float "absolute_magnitude_h", null: false
     t.jsonb "estimated_diameter", default: {}, null: false
     t.boolean "is_potentially_hazardous_asteroid", default: false, null: false
     t.datetime "created_at", null: false
