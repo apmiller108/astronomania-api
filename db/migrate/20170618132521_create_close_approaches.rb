@@ -1,9 +1,6 @@
 class CreateCloseApproaches < ActiveRecord::Migration[5.1]
   def change
-    create_table(:asteroid_close_approaches,
-                 id: false,
-                 primary_key: :orbital_id) do |t|
-      t.integer :orbital_id, null: false
+    create_table :asteroid_close_approaches do |t|
       t.date :close_approach_date, null: false
       t.integer :epoch_date_close_approach, null: false
       t.jsonb :relative_velocity, null: false, default: {}
@@ -18,7 +15,6 @@ class CreateCloseApproaches < ActiveRecord::Migration[5.1]
                     primary_key: :neo_reference_id,
                     on_delete: :cascade
 
-    add_index :asteroid_close_approaches, :orbital_id, unique: true
     add_index :asteroid_close_approaches,
               :asteroid_near_earth_object_neo_reference_id,
               name: :by_asteroid_near_earth_object_neo_reference_id

@@ -15,8 +15,7 @@ ActiveRecord::Schema.define(version: 20170618132521) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "asteroid_close_approaches", id: false, force: :cascade do |t|
-    t.integer "orbital_id", null: false
+  create_table "asteroid_close_approaches", force: :cascade do |t|
     t.date "close_approach_date", null: false
     t.integer "epoch_date_close_approach", null: false
     t.jsonb "relative_velocity", default: {}, null: false
@@ -24,7 +23,6 @@ ActiveRecord::Schema.define(version: 20170618132521) do
     t.string "orbiting_body"
     t.string "asteroid_near_earth_object_neo_reference_id"
     t.index ["asteroid_near_earth_object_neo_reference_id"], name: "by_asteroid_near_earth_object_neo_reference_id"
-    t.index ["orbital_id"], name: "index_asteroid_close_approaches_on_orbital_id", unique: true
   end
 
   create_table "asteroid_near_earth_objects", id: false, force: :cascade do |t|

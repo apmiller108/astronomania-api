@@ -1,5 +1,9 @@
 module Asteroid
   class NearEarthObject < ApplicationRecord
+    has_many :close_approaches,
+             class_name: 'Asteroid::CloseApproach',
+             foreign_key: :asteroid_near_earth_object_neo_reference_id
+
     validates :name,
               :absolute_magnitude_h,
               :estimated_diameter,
