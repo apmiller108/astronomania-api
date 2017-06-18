@@ -8,22 +8,32 @@ module DataImport
 
     def initialize
       @conn = Faraday.new(url: BASE_URL)
-      @loader = DataImport::PageLoader.new('asteroid')
+      @list_loader = DataImport::AsteroidListLoader.new
       @page_num = 0
       @total_pages = 0
     end
 
     def call
-      response = conn.get do |req|
+      process_response request_page
+      if page_num > total_pages
+        puts "#{@list_loader.number_successful} processed successfully "\
+             "#{@list_loader.number_failed} failed."
+      else
+        call
+      end
+    end
+
+    private
+
+    attr_accessor :page_num, :total_pages
+
+    def request_page
+      @conn.get do |req|
         req.params[:page] = page_num
         req.params[:size] = 20
         req.params[:api_key] = ENV['NASA_API_KEY']
       end
-      process_response response
-      # call unless page_num == total_pages
     end
-
-    private
 
     def json(response)
       JSON.parse(response.body)
@@ -32,15 +42,12 @@ module DataImport
     def process_response(response)
       parsed_body = json(response)
       update_pagination parsed_body
-      @loader.process parsed_body['near_earth_objects']
+      @list_loader.process parsed_body['near_earth_objects']
     end
 
     def update_pagination(response_body)
-      self.page_num = response_body['page']['number']
+      self.page_num = page_num + 1
       self.total_pages = response_body['page']['total_pages']
     end
-
-    attr_reader :conn
-    attr_accessor :page_num, :total_pages
   end
 end

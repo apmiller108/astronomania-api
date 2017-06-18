@@ -1,6 +1,6 @@
 class CreateAsteroidOrbits < ActiveRecord::Migration[5.1]
   def change
-    create_table :asteroid_orbits, id: false, primary_key: :orbit_id do |t|
+    create_table :asteroid_orbits do |t|
       t.integer :orbit_id, null: false
       t.datetime :orbit_determination_date, null: false
       t.integer :orbit_uncertainty, null: false
@@ -32,7 +32,5 @@ class CreateAsteroidOrbits < ActiveRecord::Migration[5.1]
     add_index :asteroid_orbits,
               :asteroid_near_earth_object_neo_reference_id,
               name: :orbit_by_asteroid_near_earth_object_neo_reference_id
-
-    execute 'ALTER TABLE asteroid_orbits ADD PRIMARY KEY (orbit_id);'
   end
 end

@@ -7,8 +7,6 @@ describe Asteroid::NearEarthObject do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }
-    it { is_expected.to validate_presence_of :absolute_magnitude_h }
-    it { is_expected.to validate_presence_of :estimated_diameter }
   end
 
   describe 'associations' do

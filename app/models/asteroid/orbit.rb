@@ -24,7 +24,5 @@ module Asteroid
               :mean_motion,
               :equinox,
               presence: true
-
-    alias_attribute :id, :orbit_id
   end
 end

@@ -6,8 +6,8 @@ class CreateAsteroidNearEarthObject < ActiveRecord::Migration[5.1]
       t.string :neo_reference_id, null: false
       t.string :name, null: false
       t.string :nasa_jpl_url
-      t.float :absolute_magnitude_h, null: false
-      t.jsonb :estimated_diameter, null: false, default: {}
+      t.float :absolute_magnitude_h
+      t.jsonb :estimated_diameter, default: {}
       t.boolean :is_potentially_hazardous_asteroid, null: false, default: false
       t.timestamps
     end

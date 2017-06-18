@@ -30,14 +30,15 @@ ActiveRecord::Schema.define(version: 20170618150950) do
   create_table "asteroid_near_earth_objects", primary_key: "neo_reference_id", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.string "nasa_jpl_url"
-    t.float "absolute_magnitude_h", null: false
-    t.jsonb "estimated_diameter", default: {}, null: false
+    t.float "absolute_magnitude_h"
+    t.jsonb "estimated_diameter", default: {}
     t.boolean "is_potentially_hazardous_asteroid", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "asteroid_orbits", primary_key: "orbit_id", id: :integer, default: nil, force: :cascade do |t|
+  create_table "asteroid_orbits", force: :cascade do |t|
+    t.integer "orbit_id", null: false
     t.datetime "orbit_determination_date", null: false
     t.integer "orbit_uncertainty", null: false
     t.decimal "minimum_orbit_intersection", null: false
