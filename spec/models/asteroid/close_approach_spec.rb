@@ -11,6 +11,7 @@ describe Asteroid::CloseApproach do
   end
 
   it 'has a valid factory' do
+    binding.pry
     expect(subject).to be_valid
   end
 
