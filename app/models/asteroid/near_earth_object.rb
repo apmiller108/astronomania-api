@@ -4,6 +4,11 @@ module Asteroid
              class_name: 'Asteroid::CloseApproach',
              foreign_key: :asteroid_near_earth_object_neo_reference_id
 
+    has_one :orbit,
+            class_name: 'Asteroid::Orbit',
+            foreign_key: :asteroid_near_earth_object_neo_reference_id,
+            primary_key: :orbit_id
+
     validates :name,
               :absolute_magnitude_h,
               :estimated_diameter,
