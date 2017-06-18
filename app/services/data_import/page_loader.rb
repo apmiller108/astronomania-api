@@ -6,7 +6,7 @@ module DataImport
     end
 
     def process(asteroids)
-      p asteroids.count
+      p asteroids.first
     end
   end
 end

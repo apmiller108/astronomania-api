@@ -17,7 +17,7 @@ module DataImport
       response = conn.get do |req|
         req.params[:page] = page_num
         req.params[:size] = 20
-        req.params[:api_key] = 'DEMO_KEY'
+        req.params[:api_key] = ENV['NASA_API_KEY']
       end
       process_response response
       # call unless page_num == total_pages

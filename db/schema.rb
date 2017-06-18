@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604222323) do
+ActiveRecord::Schema.define(version: 20170618014827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "asteroid_near_earth_objects", id: false, force: :cascade do |t|
+    t.string "neo_reference_id", null: false
+    t.string "name", null: false
+    t.string "nasa_jpl_url"
+    t.float "absolute_magnitude", null: false
+    t.jsonb "estimated_diameter", default: {}, null: false
+    t.boolean "is_potentially_hazardous_asteroid", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["neo_reference_id"], name: "index_asteroid_near_earth_objects_on_neo_reference_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
