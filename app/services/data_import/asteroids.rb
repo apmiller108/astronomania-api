@@ -15,8 +15,8 @@ module DataImport
 
     def call
       process_response request_page
-      if page_num > total_pages
-        puts "#{@list_loader.number_successful} processed successfully "\
+      if page_num == total_pages
+        puts "#{@list_loader.number_successful} processed successfully. "\
              "#{@list_loader.number_failed} failed."
       else
         call
