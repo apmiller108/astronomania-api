@@ -8,7 +8,7 @@ module Asteroid
             class_name: 'Asteroid::Orbit',
             foreign_key: :asteroid_near_earth_object_neo_reference_id
 
-    validates :name, presence: true
+    validates :name, :neo_reference_id, presence: true
 
     store :estimated_diameter, accessors: %i[kilometers meters miles feet]
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 include MockResponses
 
-describe DataImport::Asteroids do
+describe Importer::Asteroids::Import do
   subject do
     described_class.new
   end
@@ -12,7 +12,8 @@ describe DataImport::Asteroids do
   end
 
   before :each do
-    stub_request(:get, request_url).and_return(status: 200, body: neo_list)
+    stub_request(:get, request_url).and_return(status: 200,
+                                               body: twenty_valid_asteroids)
   end
 
   it 'gets all pages and puts the results' do

@@ -1,10 +1,11 @@
 module MockResponses
-  def neo_list
-    recorded_response_body = Rails.root.join('spec',
-                                             'support',
-                                             'helpers',
-                                             'api_responses',
-                                             'neo_list.txt')
-    File.open(recorded_response_body, 'rb', &:read)
+  def twenty_valid_asteroids
+    path = %w[spec support helpers api_responses neo twenty_valid.txt]
+    File.open(Rails.root.join(*path), 'rb', &:read)
+  end
+
+  def nineteen_valid_of_twenty_asteroids
+    path = %w[spec support helpers api_responses neo nineteen_valid_of_twenty.txt]
+    File.open(Rails.root.join(*path), 'rb', &:read)
   end
 end
