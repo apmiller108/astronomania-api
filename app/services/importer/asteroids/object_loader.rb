@@ -1,30 +1,7 @@
 module Importer
   module Asteroids
-    class ListLoader
-      attr_accessor :number_successful, :number_failed
-
-      def initialize
-        @number_successful = 0
-        @number_failed = 0
-      end
-
-      def process(list)
-        list.each do |item|
-          begin
-            ActiveRecord::Base.transaction do
-              create_records item
-              self.number_successful = number_successful + 1
-            end
-          rescue ActiveRecord::RecordInvalid
-            self.number_failed = number_failed + 1
-            next
-          end
-        end
-      end
-
-      private
-
-      def create_records(item)
+    class ObjectLoader
+      def create_or_update(item)
         neo = Asteroid::NearEarthObject
               .find_or_initialize_by(id: item['neo_reference_id'])
 
@@ -32,6 +9,8 @@ module Importer
         create_or_update_close_approaches neo, item
         create_or_update_orbit neo, item
       end
+
+      private
 
       def create_or_update_near_earth_object(neo, item)
         Asteroid::NearEarthObject.attribute_names.each do |name|
@@ -42,10 +21,11 @@ module Importer
 
       def create_or_update_close_approaches(neo, item)
         item['close_approach_data'].each do |close_approach|
-          approach = neo.close_approaches
-                        .find_or_initialize_by(
-                          close_approach_date: close_approach['close_approach_date']
-                        )
+          approach =
+            neo.close_approaches
+               .find_or_initialize_by(
+                 close_approach_date: close_approach['close_approach_date']
+               )
 
           Asteroid::CloseApproach.attribute_names.each do |name|
             approach[name] = close_approach[name] unless close_approach[name].nil?

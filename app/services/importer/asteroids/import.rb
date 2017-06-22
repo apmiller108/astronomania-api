@@ -9,7 +9,7 @@ module Importer
 
       def initialize
         @conn = Faraday.new(url: BASE_URL)
-        @list_loader = Importer::Asteroids::ListLoader.new
+        @list_loader = Importer::ListLoader.new(object_type: :asteroid)
         @page_num = 0
         @total_pages = 0
       end
