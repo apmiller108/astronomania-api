@@ -1,6 +1,15 @@
 require 'rails_helper'
+include MockResponses
 
 describe Importer::Asteroids::ObjectLoader do
+  let :asteroid do
+    JSON.parse(twenty_valid_asteroids)['near_earth_objects'].first
+  end
+
+  subject do
+    described_class.new(asteroid)
+  end
+
   describe 'saving a near_earth_object' do
     context 'valid asteroid data' do
       context 'new asteroid' do
