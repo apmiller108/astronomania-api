@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625194720) do
+ActiveRecord::Schema.define(version: 20170625201838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170625194720) do
     t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_apods_on_date"
   end
 
   create_table "asteroid_close_approaches", force: :cascade do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170625194720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asteroid_near_earth_object_neo_reference_id"], name: "by_asteroid_near_earth_object_neo_reference_id"
+    t.index ["close_approach_date"], name: "index_asteroid_close_approaches_on_close_approach_date"
   end
 
   create_table "asteroid_near_earth_objects", primary_key: "neo_reference_id", id: :string, force: :cascade do |t|

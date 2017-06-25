@@ -15,13 +15,30 @@ module Importer
 
       def call
         if apod_request.status == 200
-          @object_loader.create_or_update(JSON.parse(apod_request.body))
+          create_or_update_apod
         else
-          puts apod_request.body['msg']
+          Importer::PrintResults.for_request(
+            type: :error,
+            message: JSON.parse(apod_request.body)['msg']
+          )
         end
       end
 
       private
+
+      def create_or_update_apod
+        if @object_loader.create_or_update(JSON.parse(apod_request.body))
+          Importer::PrintResults.for_import_completion(
+            number_successful: 1,
+            number_failed: 0
+          )
+        else
+          Importer::PrintResults.for_import_completion(
+            number_successful: 0,
+            number_failed: 1
+          )
+        end
+      end
 
       def apod_request
         @apod_request ||= @conn.get do |req|

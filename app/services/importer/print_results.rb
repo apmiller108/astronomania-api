@@ -9,5 +9,14 @@ module Importer
       puts "#{number_successful} processed successfully. "\
            "#{number_failed} failed."
     end
+
+    def self.for_request(type:, message:)
+      case type
+      when :error
+        puts "The request failed because '#{message}'"
+      when :sucess
+        puts "The request succeeded: #{message}"
+      end
+    end
   end
 end
