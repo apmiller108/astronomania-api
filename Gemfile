@@ -9,11 +9,13 @@ end
 
 gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faraday'
 gem 'jwt'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'rack-cors'
 gem 'rails', '~> 5.1.1'
+gem 'storext'
 
 group :development, :test do
   gem 'dotenv-rails'

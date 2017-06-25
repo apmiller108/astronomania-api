@@ -17,3 +17,6 @@
 
 # Ignore Emacs autosave file
 .#*
+
+# Ignore environment variables
+.env
