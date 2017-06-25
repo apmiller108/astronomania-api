@@ -1,11 +1,11 @@
 module Importer
   module Asteroids
+    BASE_URL = 'https://api.nasa.gov/neo/rest/v1/neo/browse'.freeze
+
     class Import
       def self.call
         new.call
       end
-
-      BASE_URL = 'https://api.nasa.gov/neo/rest/v1/neo/browse'.freeze
 
       def initialize
         @conn = Faraday.new(url: BASE_URL)
@@ -36,12 +36,8 @@ module Importer
         end
       end
 
-      def json(response)
-        JSON.parse(response.body)
-      end
-
       def process_response(response)
-        parsed_body = json(response)
+        parsed_body = JSON.parse(response.body)
         update_pagination parsed_body
         @list_loader.process parsed_body['near_earth_objects']
       end

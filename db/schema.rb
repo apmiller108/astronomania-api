@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618150950) do
+ActiveRecord::Schema.define(version: 20170625194720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apods", force: :cascade do |t|
+    t.string "copyright"
+    t.date "date", null: false
+    t.text "explanation", null: false
+    t.string "hdurl"
+    t.string "media_type"
+    t.string "service_version"
+    t.string "title", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "asteroid_close_approaches", force: :cascade do |t|
     t.date "close_approach_date", null: false
