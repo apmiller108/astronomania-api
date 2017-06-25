@@ -17,9 +17,9 @@ module Importer
       def call
         process_response request_page
         if page_num == total_pages
-          puts "#{@list_loader.number_successful} processed successfully. "\
-              "#{@list_loader.number_failed} failed."
+          print_import_results
         else
+          print_page_results
           call
         end
       end
@@ -49,6 +49,18 @@ module Importer
       def update_pagination(response_body)
         self.page_num = page_num + 1
         self.total_pages = response_body['page']['total_pages']
+      end
+
+      def print_import_results
+        Importer::PrintResults.for_import_completion(
+          number_successful: @list_loader.number_successful,
+          number_failed: @list_loader.number_failed
+        )
+      end
+
+      def print_page_results
+        Importer::PrintResults.for_page_completion(page_num: page_num,
+                                                   total_pages: total_pages)
       end
     end
   end
