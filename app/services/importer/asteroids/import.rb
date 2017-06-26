@@ -15,20 +15,17 @@ module Importer
       end
 
       def call
-        process_response request_page
-        if page_num == total_pages
-          print_import_results
-        else
-          print_page_results
-          call
-        end
+        process_response_for page_request
+        return print_import_results if page_num == total_pages
+        print_page_results
+        call
       end
 
       private
 
       attr_accessor :page_num, :total_pages
 
-      def request_page
+      def page_request
         @conn.get do |req|
           req.params[:page] = page_num
           req.params[:size] = 20
@@ -36,10 +33,16 @@ module Importer
         end
       end
 
-      def process_response(response)
+      def process_response_for(response)
         parsed_body = JSON.parse(response.body)
-        update_pagination parsed_body
-        @list_loader.process parsed_body['near_earth_objects']
+        if response.status == 200
+          update_pagination parsed_body
+          @list_loader.process parsed_body['near_earth_objects']
+        else
+          Importer::PrintResults.for_request(type: :error,
+                                             message: parsed_body['msg'])
+          raise Importer::ApiRequestError, parsed_body['msg']
+        end
       end
 
       def update_pagination(response_body)
