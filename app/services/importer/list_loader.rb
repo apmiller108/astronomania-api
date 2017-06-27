@@ -15,7 +15,8 @@ module Importer
             @object_loader.create_or_update item
             self.number_successful = number_successful + 1
           end
-        rescue ActiveRecord::RecordInvalid
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error "Failed to save record because: #{e.message}"
           self.number_failed = number_failed + 1
           next
         end

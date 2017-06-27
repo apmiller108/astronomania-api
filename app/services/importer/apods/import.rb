@@ -17,8 +17,9 @@ module Importer
         if apod_request.status == 200
           create_or_update_apod
         else
-          Importer::PrintResults.for_request(type: :error,
-                                             message: parsed_body['msg'])
+          Rails.logger.error(
+            "Request for APOD failed because: #{parsed_body['msg']}"
+          )
         end
       end
 
@@ -29,13 +30,12 @@ module Importer
       end
 
       def create_or_update_apod
-        if @object_loader.create_or_update(parsed_body)
-          Importer::PrintResults.for_import_completion(number_successful: 1,
-                                                       number_failed: 0)
-        else
-          Importer::PrintResults.for_import_completion(number_successful: 0,
-                                                       number_failed: 1)
-        end
+        @object_loader.create_or_update(parsed_body)
+        Rails.logger.info(
+          "Successfully imported APOD for #{parsed_body['date']}"
+        )
+      rescue ActiveRecord::RecordInvalid => e
+        Rails.logger.error("Failed to import APOD because #{e.message}")
       end
 
       def apod_request

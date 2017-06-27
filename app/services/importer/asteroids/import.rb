@@ -16,7 +16,7 @@ module Importer
 
       def call
         process_response_for page_request
-        return print_import_results if page_num == total_pages
+        return log_import_results if page_num == total_pages
         print_page_results
         call
       end
@@ -39,8 +39,9 @@ module Importer
           update_pagination parsed_body
           @list_loader.process parsed_body['near_earth_objects']
         else
-          Importer::PrintResults.for_request(type: :error,
-                                             message: parsed_body['msg'])
+          Rails.logger.error(
+            "Request for NEO page failed because: #{parsed_body['msg']}"
+          )
           raise Importer::ApiRequestError, parsed_body['msg']
         end
       end
@@ -50,16 +51,16 @@ module Importer
         self.total_pages = response_body['page']['total_pages']
       end
 
-      def print_import_results
-        Importer::PrintResults.for_import_completion(
-          number_successful: @list_loader.number_successful,
-          number_failed: @list_loader.number_failed
+      def log_import_results
+        Rails.logger.info(
+          "Completed asteroid import: #{@list_loader.number_successful} "\
+          "successful. #{@list_loader.number_failed} failed."
         )
       end
 
       def print_page_results
-        Importer::PrintResults.for_page_completion(page_num: page_num,
-                                                   total_pages: total_pages)
+        print "completed #{page_num} of #{total_pages} \r"
+        $stdout.flush
       end
     end
   end

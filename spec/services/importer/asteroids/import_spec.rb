@@ -17,10 +17,14 @@ describe Importer::Asteroids::Import do
                                                  body: twenty_valid_asteroids)
     end
 
-    it 'gets all pages and puts the results' do
-      expect { subject.call }.to(
-        output("20 processed successfully. 0 failed.\n").to_stdout
+    it 'gets all pages and logs the result' do
+      expect(Rails.logger).to(
+        receive(:info).with(
+          "Completed asteroid import: 20 successful. 0 failed."
+        )
       )
+
+      subject.call
     end
   end
 

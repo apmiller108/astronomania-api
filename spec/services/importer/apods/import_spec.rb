@@ -13,10 +13,14 @@ describe Importer::Apods::Import do
         stub_request(:get, request_url).to_return(status: 200, body: valid_apod)
       end
 
-      it 'prints the results to stdout' do
-        expect { described_class.call }.to(
-          output("1 processed successfully. 0 failed.\n").to_stdout
+      it 'logs the successful import' do
+        expect(Rails.logger).to(
+          receive(:info).with(
+            "Successfully imported APOD for 2017-06-25"
+          )
         )
+
+        described_class.call
       end
     end
 
@@ -26,25 +30,33 @@ describe Importer::Apods::Import do
                                                   body: invalid_apod)
       end
 
-      it 'prints the results to stdout' do
-        expect { described_class.call }.to(
-          output("0 processed successfully. 1 failed.\n").to_stdout
+      it 'logs the validation error' do
+        expect(Rails.logger).to(
+          receive(:error).with(
+            "Failed to import APOD because Validation failed: "\
+            "Url can't be blank"
+          )
         )
+
+        described_class.call
       end
     end
   end
+
   context 'when response status is error' do
     before :each do
       stub_request(:get, request_url).to_return(status: 400,
                                                 body: bad_request)
     end
 
-    it 'prints the error message to stdout' do
-      expect { described_class.call }.to(
-        output(
-          "The request failed because 'Uh oh! You did something bad.'\n"
-        ).to_stdout
+    it 'logs the error response message' do
+      expect(Rails.logger).to(
+        receive(:error).with(
+          "Request for APOD failed because: Uh oh! You did something bad."
+        )
       )
+
+      described_class.call
     end
   end
 end

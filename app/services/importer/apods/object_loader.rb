@@ -6,7 +6,7 @@ module Importer
         Apod.attribute_names.each do |name|
           apod[name] = item[name] unless item[name].nil?
         end
-        apod.save
+        apod.save!
       end
     end
   end

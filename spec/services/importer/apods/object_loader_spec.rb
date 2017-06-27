@@ -41,10 +41,10 @@ describe Importer::Apods::ObjectLoader do
   end
 
   context 'with invalid attributes' do
-    it 'returns false' do
-      expect(
+    it 'raises RecordInvalid exception' do
+      expect do
         subject.create_or_update(apod_with_invalid_attributes)
-      ).to be false
+      end.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end
