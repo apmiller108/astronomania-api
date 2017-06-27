@@ -1,0 +1,5 @@
+{
+    "code": 400,
+    "msg": "Uh oh! You did something bad.",
+    "service_version": "v1"
+}

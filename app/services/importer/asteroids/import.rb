@@ -1,11 +1,11 @@
 module Importer
   module Asteroids
+    BASE_URL = 'https://api.nasa.gov/neo/rest/v1/neo/browse'.freeze
+
     class Import
       def self.call
         new.call
       end
-
-      BASE_URL = 'https://api.nasa.gov/neo/rest/v1/neo/browse'.freeze
 
       def initialize
         @conn = Faraday.new(url: BASE_URL)
@@ -15,20 +15,17 @@ module Importer
       end
 
       def call
-        process_response request_page
-        if page_num == total_pages
-          print_import_results
-        else
-          print_page_results
-          call
-        end
+        process_response_for page_request
+        return log_import_results if page_num == total_pages
+        print_page_results
+        call
       end
 
       private
 
       attr_accessor :page_num, :total_pages
 
-      def request_page
+      def page_request
         @conn.get do |req|
           req.params[:page] = page_num
           req.params[:size] = 20
@@ -36,14 +33,17 @@ module Importer
         end
       end
 
-      def json(response)
-        JSON.parse(response.body)
-      end
-
-      def process_response(response)
-        parsed_body = json(response)
-        update_pagination parsed_body
-        @list_loader.process parsed_body['near_earth_objects']
+      def process_response_for(response)
+        parsed_body = JSON.parse(response.body)
+        if response.status == 200
+          update_pagination parsed_body
+          @list_loader.process parsed_body['near_earth_objects']
+        else
+          Rails.logger.error(
+            "Request for NEO page failed because: #{parsed_body['msg']}"
+          )
+          raise Importer::ApiRequestError, parsed_body['msg']
+        end
       end
 
       def update_pagination(response_body)
@@ -51,16 +51,16 @@ module Importer
         self.total_pages = response_body['page']['total_pages']
       end
 
-      def print_import_results
-        Importer::PrintResults.for_import_completion(
-          number_successful: @list_loader.number_successful,
-          number_failed: @list_loader.number_failed
+      def log_import_results
+        Rails.logger.info(
+          "Completed asteroid import: #{@list_loader.number_successful} "\
+          "successful. #{@list_loader.number_failed} failed."
         )
       end
 
       def print_page_results
-        Importer::PrintResults.for_page_completion(page_num: page_num,
-                                                   total_pages: total_pages)
+        print "completed #{page_num} of #{total_pages} \r"
+        $stdout.flush
       end
     end
   end

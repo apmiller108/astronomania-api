@@ -1,0 +1,10 @@
+{
+    "copyright": "gemini obs.",
+    "date": "2017-06-25",
+    "explanation": "what created this gigantic hole?  the vast emission nebula n44 in our neighboring galaxy the large magellanic cloud has a large, 250 light-year hole and astronomers are trying to figure out why.  one possibility is particle winds expelled by massive stars in the bubble's interior that are pushing out the glowing gas.  this answer was found to be inconsistent with measured wind velocities, however.  another possibility is that the expanding shells of old supernovas have sculpted the unusual space cavern.   an unexpected clue of hot x-ray emitting gas was recently been detected escaping the n44 superbubble.  the featured image was taken in three very specific colors by the huge 8-meter gemini south telescope on cerro pachon in chile.    follow apod on: facebook,  google plus,  instagram, or twitter",
+    "hdurl": "https://apod.nasa.gov/apod/image/1706/n44_gemini_4059.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "the n44 superbubble",
+    "url": "https://apod.nasa.gov/apod/image/1706/n44_gemini_960.jpg"
+}

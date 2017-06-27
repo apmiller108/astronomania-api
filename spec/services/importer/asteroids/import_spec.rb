@@ -11,14 +11,31 @@ describe Importer::Asteroids::Import do
     "#{ENV['NASA_API_KEY']}&page=0&size=20"
   end
 
-  before :each do
-    stub_request(:get, request_url).and_return(status: 200,
-                                               body: twenty_valid_asteroids)
+  context 'with a success status' do
+    before :each do
+      stub_request(:get, request_url).and_return(status: 200,
+                                                 body: twenty_valid_asteroids)
+    end
+
+    it 'gets all pages and logs the result' do
+      expect(Rails.logger).to(
+        receive(:info).with(
+          "Completed asteroid import: 20 successful. 0 failed."
+        )
+      )
+
+      subject.call
+    end
   end
 
-  it 'gets all pages and puts the results' do
-    expect { subject.call }.to(
-      output("20 processed successfully. 0 failed.\n").to_stdout
-    )
+  context 'with an error status' do
+    before :each do
+      stub_request(:get, request_url).and_return(status: 400,
+                                                 body: bad_request)
+    end
+
+    it 'raises an exception' do
+      expect { subject.call }.to(raise_error(Importer::ApiRequestError))
+    end
   end
 end
