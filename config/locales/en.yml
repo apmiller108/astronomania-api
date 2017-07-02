@@ -34,3 +34,9 @@ en:
     not_found:
       title: 'Record not found'
       detail: 'The requested resource does not exist'
+    unauthorized:
+      title: 'Not authorized'
+      detail: 'You are not authorized to do this'
+    unknown_job:
+      title: 'Unknown job'
+      detail: 'That job does not exist'

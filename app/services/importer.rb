@@ -4,5 +4,10 @@ module Importer
     apod: Importer::Apods::ObjectLoader
   }.freeze
 
+  WORKERS = {
+    asteroid: Importer::AsteroidWorker,
+    apod: Importer::ApodWorker
+  }.freeze
+
   class ApiRequestError < StandardError; end
 end

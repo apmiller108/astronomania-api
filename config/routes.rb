@@ -5,4 +5,7 @@ Rails.application.routes.draw do
       resource :profile, only: [:show]
     end
   end
+  namespace :admin do
+    resource :jobs, only: [:create]
+  end
 end
