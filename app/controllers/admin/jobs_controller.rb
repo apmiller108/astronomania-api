@@ -3,7 +3,9 @@ module Admin
     def create
       case job_params[:job_type]
       when 'import'
-        Importer::WORKERS.each_value(&:perform_async)
+        Importer::WORKERS.values.each_with_index do |worker, index|
+          worker.perform_in(index.hours)
+        end
       end
       head :created
     end
