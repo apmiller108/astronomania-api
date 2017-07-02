@@ -11,10 +11,10 @@ namespace :sample_data do
 
     puts 'Adding users'
     User.destroy_all
-    User.create email: 'scheduler@astronomania.co',
-                password: 'password',
-                password_confirmation: 'password',
-                admin: true
+    User.create! email: 'scheduler@astronomania.co',
+                 password: 'password',
+                 password_confirmation: 'password',
+                 admin: true
     puts 'Done adding users'
   end
 end

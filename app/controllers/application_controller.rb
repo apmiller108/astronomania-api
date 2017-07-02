@@ -25,6 +25,11 @@ class ApplicationController < ActionController::API
            status: :unauthorized
   end
 
+  def render_error(message:, status: :unprocessable_entity)
+    render json: { errors: [message] },
+           status: status
+  end
+
   def authenticate_request
     return render_unauthorized unless decoded_auth_token_from_headers
     load_current_user

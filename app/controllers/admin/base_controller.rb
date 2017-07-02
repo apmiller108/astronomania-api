@@ -5,8 +5,7 @@ module Admin
     private
 
     def require_admin
-      # TODO: admin check
-      # render_unauthorized unless current_user.admin?
+      render_unauthorized unless current_user.admin?
     end
   end
 end
