@@ -34,3 +34,6 @@ en:
     not_found:
       title: 'Record not found'
       detail: 'The requested resource does not exist'
+    unauthorized:
+      title: 'Not authorized'
+      detail: 'You are not authorized to do this'
