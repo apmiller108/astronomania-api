@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       resource :profile, only: [:show]
     end
   end
+  resource jobs, only: [:create]
 end
