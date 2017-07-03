@@ -16,6 +16,7 @@ gem 'puma', '~> 3.7'
 gem 'rack-cors'
 gem 'rails', '~> 5.1.1'
 gem 'redis-rails'
+gem 'rollbar'
 gem 'sidekiq'
 gem 'storext'
 
