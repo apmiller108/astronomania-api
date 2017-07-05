@@ -5,6 +5,10 @@ describe 'Asteroid Index' do
     21.times { create :asteroid_near_earth_object }
   end
 
+  after :all do
+    Asteroid::NearEarthObject.destroy_all
+  end
+
   context 'without pagination' do
     before :each do
       get asteroids_near_earth_objects_path
