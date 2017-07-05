@@ -6,7 +6,6 @@ module Asteroids
       neos = Asteroid::NearEarthObject.all
       render json: neos,
              each_serializer: Asteroids::NearEarthObjectSerializer,
-             root: :near_earth_objects,
              status: :ok
     end
   end

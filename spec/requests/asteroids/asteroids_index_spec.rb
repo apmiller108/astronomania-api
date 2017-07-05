@@ -15,7 +15,7 @@ describe 'Asteroid Index' do
     end
 
     it 'returns 20 asteroids by default' do
-      expect(json['near_earth_objects'].count).to eq 20
+      expect(json['data'].count).to eq 20
     end
   end
 end

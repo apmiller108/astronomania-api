@@ -1,15 +1,15 @@
 {
   "type": "object",
-  "required": ["user"],
+  "required": ["data"],
   "properties": {
-    "user": {
+    "id": { "type": "integer" },
+    "type": { "type": "string" },
+    "attributes": {
       "type": "object",
       "required": [
-        "id",
         "email"
       ],
       "properties": {
-        "id": { "type": "integer" },
         "email": { "type": "string" }
       }
     }

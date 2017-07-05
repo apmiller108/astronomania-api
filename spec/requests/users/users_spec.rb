@@ -24,7 +24,7 @@ describe 'Users API' do
       end
 
       it 'responds with the user id' do
-        expect(json['user']['id']).to eq created_user.id
+        expect(json['data']['id']).to eq created_user.id.to_s
       end
     end
 
