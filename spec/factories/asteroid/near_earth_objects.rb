@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :asteroid_near_earth_object, class: 'Asteroid::NearEarthObject' do
-    neo_reference_id '2021277'
+    sequence(:neo_reference_id) { |n| "2021277-#{n}" }
     name '21277 (1996 TO5)'
     nasa_jpl_url 'http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2021277'
     absolute_magnitude_h 16.0
