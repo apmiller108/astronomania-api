@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string" },
+    "attributes": {
+      "type": "object",
+      "required": [],
+      "properties": {
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "required": ["obrit", "close_approaches"],
+      "properties": {
+        "orbit": {
+          "type": "object",
+          "item": { "$ref": "asteroid_orbit.json"}
+        },
+        "close_approaches": {
+          "type": "array"
+        }
+      }
+    }
+  }
+}
+

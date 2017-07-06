@@ -23,5 +23,11 @@ FactoryGirl.define do
         "estimated_diameter_max" => 12303.3967781592
       }
     )
+    after :create do |near_earth_object|
+      create :asteroid_orbit, near_earth_object: near_earth_object
+      create_list :asteroid_close_approach,
+                  2,
+                  near_earth_object: near_earth_object
+    end
   end
 end

@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   namespace :asteroids do
-    resources :near_earth_objects, only: [:index]
+    resources :near_earth_objects, only: [:index, :show]
   end
 end

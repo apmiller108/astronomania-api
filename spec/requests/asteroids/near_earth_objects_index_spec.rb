@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Asteroid Index' do
   before :all do
-    21.times { create :asteroid_near_earth_object }
+    create_list :asteroid_near_earth_object, 21
   end
 
   after :all do
