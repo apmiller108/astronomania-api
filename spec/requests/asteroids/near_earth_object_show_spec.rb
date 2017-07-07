@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Asteroid::NearEarthObject #show' do
   let :near_earth_object do
-    create :asteroid_near_earth_object
+    create :asteroid_near_earth_object, :with_orbit, :with_close_approaches
   end
 
   context 'valid neo_reference_id' do
@@ -15,6 +15,7 @@ describe 'Asteroid::NearEarthObject #show' do
     end
 
     it 'responds with near_earth_object JSON' do
+      p json
       expect(response).to match_response_schema('asteroid_near_earth_object')
     end
   end

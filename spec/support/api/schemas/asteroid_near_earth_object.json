@@ -2,27 +2,33 @@
   "type": "object",
   "required": ["data"],
   "properties": {
-    "id": { "type": "string" },
-    "type": { "type": "string" },
-    "attributes": {
+    "data": {
       "type": "object",
-      "required": [],
+      "required": ["id", "type", "relationships"],
       "properties": {
-      }
-    },
-    "relationships": {
-      "type": "object",
-      "required": ["obrit", "close_approaches"],
-      "properties": {
-        "orbit": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "relationships": {
           "type": "object",
-          "item": { "$ref": "asteroid_orbit.json"}
-        },
-        "close_approaches": {
-          "type": "array"
+          "required": ["orbit", "close_approaches"],
+          "properties": {
+            "orbit": {
+              "type": "object",
+              "required": ["data"],
+              "properties": {
+                "data": { "type": "object" }
+              }
+            },
+            "close_approaches": {
+              "type": "object",
+              "required": ["data"],
+              "properties": {
+                "data": { "type": "array" }
+              }
+            }
+          }
         }
       }
     }
   }
 }
-
