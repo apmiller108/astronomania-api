@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :jobs, only: [:create]
   end
+
+  namespace :asteroids do
+    resources :near_earth_objects, only: [:index, :show]
+  end
 end

@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["id", "type", "relationships"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "relationships": {
+          "type": "object",
+          "required": ["orbit", "close_approaches"],
+          "properties": {
+            "orbit": {
+              "type": "object",
+              "required": ["data"],
+              "properties": {
+                "data": { "type": "object" }
+              }
+            },
+            "close_approaches": {
+              "type": "object",
+              "required": ["data"],
+              "properties": {
+                "data": { "type": "array" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
