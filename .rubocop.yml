@@ -24,3 +24,7 @@ Style/FrozenStringLiteralComment:
 
 Style/StringLiterals:
   Enabled: false
+
+Style/SymbolArray:
+  Enabled: true
+  MinSize: 8
