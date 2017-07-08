@@ -15,7 +15,6 @@ describe 'Asteroid::NearEarthObject #show' do
     end
 
     it 'responds with near_earth_object JSON' do
-      p json
       expect(response).to match_response_schema('asteroid_near_earth_object')
     end
   end
