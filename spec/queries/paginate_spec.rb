@@ -29,7 +29,7 @@ describe Paginate do
 
   context 'when options are nil' do
     subject do
-      described_class.new(relation, per: nil, page: nil).perform
+      described_class.new(relation, size: nil, page: nil).perform
     end
 
     it 'returns the first twenty records' do
@@ -39,7 +39,7 @@ describe Paginate do
 
   context 'when options are empty strings' do
     subject do
-      described_class.new(relation, per: '', page: '').perform
+      described_class.new(relation, size: '', page: '').perform
     end
 
     it 'returns the first twenty records' do
@@ -49,7 +49,7 @@ describe Paginate do
 
   context 'when per option is greater than 20' do
     subject do
-      described_class.new(relation, per: 100, page: 2).perform
+      described_class.new(relation, size: 100, page: 2).perform
     end
 
     let :ids do
@@ -63,7 +63,7 @@ describe Paginate do
 
   context 'when page option exceeds the actual number of pages' do
     subject do
-      described_class.new(relation, per: 20, page: 4).perform
+      described_class.new(relation, size: 20, page: 4).perform
     end
 
     it 'is empty' do
@@ -73,7 +73,7 @@ describe Paginate do
 
   context 'when options are 5 per page starting at page 2' do
     subject do
-      described_class.new(relation, per: 5, page: 2).perform
+      described_class.new(relation, size: 5, page: 2).perform
     end
 
     let :ids do

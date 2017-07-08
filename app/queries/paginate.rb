@@ -1,10 +1,10 @@
 class Paginate
-  attr_reader :relation, :per, :page
+  attr_reader :relation, :size, :page
 
   def initialize(relation, params = {})
     @relation = relation
     @page = params.fetch(:page, 1).to_i
-    @per = params.fetch(:per, 20).to_i
+    @size = params.fetch(:size, 20).to_i
   end
 
   def perform
@@ -19,7 +19,7 @@ class Paginate
   end
 
   def limit_by
-    return 20 unless (1..20).cover? per
-    per
+    return 20 unless (1..20).cover? size
+    size
   end
 end
