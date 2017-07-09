@@ -3,9 +3,12 @@ module Asteroids
     skip_before_action :authenticate_request, only: [:index, :show]
 
     def index
-      neos = Paginate.new(Asteroid::NearEarthObject.all, params).perform
+      results = Paginate.for(relation: Asteroid::NearEarthObject.all,
+                             path: request.env['PATH_INFO'],
+                             params: params)
 
-      render json: neos,
+      render json: results.records,
+             meta: results.meta_data,
              each_serializer: Asteroids::NearEarthObjectSerializer,
              status: :ok
     end
