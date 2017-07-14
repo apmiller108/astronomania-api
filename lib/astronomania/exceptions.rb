@@ -1,4 +1,4 @@
-module Astonomania
-  class ImportError
+module Astronomania
+  class ImportError < StandardError
   end
 end

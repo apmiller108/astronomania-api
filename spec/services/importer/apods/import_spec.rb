@@ -32,10 +32,7 @@ describe Importer::Apods::Import do
 
       it 'logs the validation error' do
         expect(Rails.logger).to(
-          receive(:error).with(
-            "Failed to import APOD because Validation failed: "\
-            "Url can't be blank"
-          )
+          receive(:warn).with("Validation failed: Url can't be blank")
         )
 
         described_class.call

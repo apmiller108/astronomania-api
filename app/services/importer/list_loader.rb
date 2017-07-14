@@ -16,7 +16,7 @@ module Importer
             self.number_successful = number_successful + 1
           end
         rescue ActiveRecord::RecordInvalid => e
-          Rails.logger.error "Failed to save record because: #{e.message}"
+          ErrorHandler::Handler.handle(e, severity: :warn)
           self.number_failed = number_failed + 1
           next
         end
