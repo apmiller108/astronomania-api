@@ -18,7 +18,6 @@ module Asteroids
                :mean_anomaly,
                :mean_motion,
                :equinox,
-               :asteroid_near_earth_object_neo_reference_id,
                :updated_at
   end
 end

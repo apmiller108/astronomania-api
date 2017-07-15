@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "required": [
+    "close_approach_date",
+    "epoch_date_close_approach",
+    "relative_velocity",
+    "miss_distance",
+    "orbiting_body",
+    "updated_at"
+  ],
+  "properties": {
+    "close_approach_date": { "type": "string" },
+    "epoch_date_close_approach": { "type": "string" },
+    "relative_velocity": {
+      "type": "object",
+      "required": ["miles_per_hour", "kilometers_per_hour", "kilometers_per_second"],
+      "properties": {
+        "miles_per_hour": { "type": "number" },
+        "kilometers_per_hour": { "type": "number" },
+        "kilometers_per_second": { "type": "number" }
+      }
+    },
+    "miss_distance": {
+      "type": "object",
+      "required": ["lunar", "miles", "kilometers", "astronomical"],
+      "properties": {
+        "lunar": { "type": "number" },
+        "miles": { "type": "number" },
+        "kilometers": { "type": "number" },
+        "astronomical": { "type": "number" }
+      }
+    },
+    "orbiting_body": { "type": "string" },
+    "updated_at": { "type": "string" }
+  }
+}

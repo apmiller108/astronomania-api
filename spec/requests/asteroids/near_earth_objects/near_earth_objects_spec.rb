@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'requests for near_earth_objects' do
   describe '#index' do
     before :all do
-      create_list :asteroid_near_earth_object, 21
+      create_list :asteroid_near_earth_object, 21, :with_orbit
     end
 
     after :all do
