@@ -35,7 +35,7 @@ describe Importer::Asteroids::Import do
     end
 
     it 'raises an exception' do
-      expect { subject.call }.to(raise_error(Importer::ApiRequestError))
+      expect { subject.call }.to(raise_error(Astronomania::ImportError))
     end
   end
 end

@@ -42,7 +42,7 @@ module Importer
           Rails.logger.error(
             "Request for NEO page failed because: #{parsed_body['msg']}"
           )
-          raise Importer::ApiRequestError, parsed_body['msg']
+          raise Astronomania::ImportError, parsed_body['msg']
         end
       end
 
@@ -56,11 +56,6 @@ module Importer
           "Completed asteroid import: #{@list_loader.number_successful} "\
           "successful. #{@list_loader.number_failed} failed."
         )
-      end
-
-      def print_page_results
-        print "completed #{page_num} of #{total_pages} \r"
-        $stdout.flush
       end
     end
   end

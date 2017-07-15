@@ -35,7 +35,7 @@ module Importer
           "Successfully imported APOD for #{parsed_body['date']}"
         )
       rescue ActiveRecord::RecordInvalid => e
-        Rails.logger.error("Failed to import APOD because #{e.message}")
+        ErrorHandler::Handler.handle(e, severity: :warn)
       end
 
       def apod_request

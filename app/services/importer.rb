@@ -8,6 +8,4 @@ module Importer
     asteroid: Importer::AsteroidWorker,
     apod: Importer::ApodWorker
   }.freeze
-
-  class ApiRequestError < StandardError; end
 end

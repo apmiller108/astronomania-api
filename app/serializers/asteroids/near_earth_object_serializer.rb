@@ -1,7 +1,7 @@
 module Asteroids
   class NearEarthObjectSerializer < ActiveModel::Serializer
-    has_one :orbit, class_name: 'Asteroid::Orbit'
-    has_many :close_approaches, class_name: 'Asteroid::CloseApproach'
+    has_one :orbit
+    has_many :close_approaches
 
     attributes :id,
                :name,
@@ -9,5 +9,9 @@ module Asteroids
                :absolute_magnitude_h,
                :estimated_diameter,
                :is_potentially_hazardous_asteroid
+
+    attribute :orbital_data do
+      Asteroids::OrbitSerializer.new object.orbit if object.orbit
+    end
   end
 end

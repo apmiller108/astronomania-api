@@ -70,10 +70,7 @@ describe Importer::ListLoader do
     describe 'logging errors' do
       it 'logs validation errors for failed records' do
         expect(Rails.logger).to(
-          receive(:error).with(
-            "Failed to save record because: Validation failed: Neo reference "\
-            "can't be blank"
-          )
+          receive(:warn).with("Validation failed: Neo reference can't be blank")
         )
 
         subject.process nineteen_of_twenty_valid_asteroids_list

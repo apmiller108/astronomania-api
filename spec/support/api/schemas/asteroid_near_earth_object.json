@@ -15,51 +15,16 @@
             "nasa_jpl_url",
             "absolute_magnitude_h",
             "estimated_diameter",
-            "is_potentially_hazardous_asteroid"
+            "is_potentially_hazardous_asteroid",
+            "orbital_data"
           ],
           "properties": {
             "name": { "type": "string" },
             "nasa_jpl_url": { "type": "string" },
             "absolute_magnitude_h": { "type": "number" },
             "is_potentially_hazardous_asteroid": { "type": "boolean" },
-            "estimated_diameter": {
-              "type": "object",
-              "required": ["kilometers", "meters", "miles", "feet"],
-              "properties": {
-                "kilometers": {
-                  "type": "object",
-                  "required": ["estimated_diameter_min", "estimated_diameter_max"],
-                  "properties": {
-                    "estimated_diameter_min": { "type": "number" },
-                    "estimated_diameter_max": { "type": "number" }
-                  }
-                },
-                "meters": {
-                  "type": "object",
-                  "required": ["estimated_diameter_min", "estimated_diameter_max"],
-                  "properties": {
-                    "estimated_diameter_min": { "type": "number" },
-                    "estimated_diameter_max": { "type": "number" }
-                  }
-                },
-                "miles": {
-                  "type": "object",
-                  "required": ["estimated_diameter_min", "estimated_diameter_max"],
-                  "properties": {
-                    "estimated_diameter_min": { "type": "number" },
-                    "estimated_diameter_max": { "type": "number" }
-                  }
-                },
-                "feet": {
-                  "type": "object",
-                  "required": ["estimated_diameter_min", "estimated_diameter_max"],
-                  "properties": {
-                    "estimated_diameter_min": { "type": "number" },
-                    "estimated_diameter_max": { "type": "number" }
-                  }
-                }
-              }
-            }
+            "orbital_data": { "$ref": "asteroid_orbit.json" },
+            "estimated_diameter": { "$ref": "estimated_diameter.json" }
           }
         },
         "relationships": {
