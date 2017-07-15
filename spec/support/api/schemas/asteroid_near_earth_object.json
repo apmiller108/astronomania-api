@@ -4,7 +4,7 @@
   "properties": {
     "data": {
       "type": "object",
-      "required": ["id", "type", "relationships"],
+      "required": ["id", "type", "attributes"],
       "properties": {
         "id": { "type": "string" },
         "type": { "type": "string" },
@@ -16,7 +16,8 @@
             "absolute_magnitude_h",
             "estimated_diameter",
             "is_potentially_hazardous_asteroid",
-            "orbital_data"
+            "orbital_data",
+            "close_approaches"
           ],
           "properties": {
             "name": { "type": "string" },
@@ -24,26 +25,10 @@
             "absolute_magnitude_h": { "type": "number" },
             "is_potentially_hazardous_asteroid": { "type": "boolean" },
             "orbital_data": { "$ref": "asteroid_orbit.json" },
-            "estimated_diameter": { "$ref": "estimated_diameter.json" }
-          }
-        },
-        "relationships": {
-          "type": "object",
-          "required": ["orbit", "close_approaches"],
-          "properties": {
-            "orbit": {
-              "type": "object",
-              "required": ["data"],
-              "properties": {
-                "data": { "type": "object" }
-              }
-            },
+            "estimated_diameter": { "$ref": "estimated_diameter.json" },
             "close_approaches": {
-              "type": "object",
-              "required": ["data"],
-              "properties": {
-                "data": { "type": "array" }
-              }
+              "type": "array",
+              "items": { "$ref": "close_approach.json" }
             }
           }
         }
