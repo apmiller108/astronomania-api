@@ -15,13 +15,15 @@
             "nasa_jpl_url",
             "absolute_magnitude_h",
             "estimated_diameter",
-            "is_potentially_hazardous_asteroid"
+            "is_potentially_hazardous_asteroid",
+            "orbital_data"
           ],
           "properties": {
             "name": { "type": "string" },
             "nasa_jpl_url": { "type": "string" },
             "absolute_magnitude_h": { "type": "number" },
             "is_potentially_hazardous_asteroid": { "type": "boolean" },
+            "orbital_data": { "$ref": "asteroid_orbit.json" },
             "estimated_diameter": {
               "type": "object",
               "required": ["kilometers", "meters", "miles", "feet"],
