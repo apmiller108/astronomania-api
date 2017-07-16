@@ -6,7 +6,7 @@
   "page" : {
     "size" : 20,
     "total_elements" : 16548,
-    "total_pages" : 1,
+    "total_pages" : 2,
     "number" : 0
   },
   "near_earth_objects" : [ {

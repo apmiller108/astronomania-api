@@ -5,7 +5,7 @@ module Importer
     def initialize(object_type:)
       @number_successful = 0
       @number_failed = 0
-      @object_loader = Importer::OBJECT_TYPES[object_type].new
+      @object_loader = Importer::OBJECT_LOADERS[object_type].new
     end
 
     def process(list)
