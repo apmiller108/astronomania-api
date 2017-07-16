@@ -1,5 +1,5 @@
 module Importer
-  OBJECT_TYPES = {
+  OBJECT_LOADERS = {
     asteroid: Importer::Asteroids::ObjectLoader,
     apod: Importer::Apods::ObjectLoader
   }.freeze

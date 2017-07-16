@@ -10,7 +10,7 @@ module Importer
       def initialize(date)
         @conn = Faraday.new(url: BASE_URL)
         @date = date
-        @object_loader = Importer::OBJECT_TYPES[:apod].new
+        @object_loader = Importer::OBJECT_LOADERS[:apod].new
       end
 
       def call

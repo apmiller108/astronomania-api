@@ -17,7 +17,6 @@ module Importer
       def call
         process_response_for page_request
         return log_import_results if page_num == total_pages
-        print_page_results
         call
       end
 
@@ -34,21 +33,25 @@ module Importer
       end
 
       def process_response_for(response)
-        parsed_body = JSON.parse(response.body)
-        if response.status == 200
-          update_pagination parsed_body
-          @list_loader.process parsed_body['near_earth_objects']
-        else
-          Rails.logger.error(
-            "Request for NEO page failed because: #{parsed_body['msg']}"
-          )
-          raise Astronomania::ImportError, parsed_body['msg']
-        end
+        @parsed_body = JSON.parse(response.body)
+        return log_and_raise unless response.status == 200
+
+        update_pagination
+        @list_loader.process(@parsed_body['near_earth_objects'])
       end
 
-      def update_pagination(response_body)
+      def log_and_raise
+        Rails.logger.error("Request for NEO page failed: #{error_message}")
+        raise Astronomania::ImportError, error_message
+      end
+
+      def error_message
+        @parsed_body['msg'] || @parsed_body['error']['message']
+      end
+
+      def update_pagination
         self.page_num = page_num + 1
-        self.total_pages = response_body['page']['total_pages']
+        self.total_pages = @parsed_body['page']['total_pages']
       end
 
       def log_import_results

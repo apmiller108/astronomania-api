@@ -1,7 +1,7 @@
 module MockResponses
   BASE_PATH = %w[spec support helpers api_responses].freeze
-  def twenty_valid_asteroids
-    path = BASE_PATH + %w[neo twenty_valid.txt]
+  def twenty_valid_asteroids(page: 1)
+    path = BASE_PATH + ['neo', "twenty_valid_page_#{page}.txt"]
     File.open(Rails.root.join(*path), 'rb', &:read)
   end
 
