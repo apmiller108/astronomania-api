@@ -1,7 +1,5 @@
 module Asteroids
   class NearEarthObjectsController < ApplicationController
-    skip_before_action :authenticate_request, only: [:index, :show]
-
     def index
       results = Paginate.for(relation: Asteroid::NearEarthObject.all,
                              path: request.env['PATH_INFO'],

@@ -4,8 +4,6 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
-  before_action :authenticate_request
-
   private
 
   attr_reader :current_user
@@ -31,18 +29,25 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_request
-    return render_unauthorized unless decoded_auth_token_from_headers
+    return render_unauthorized unless valid_auth_token?
     load_current_user
   end
 
-  def decoded_auth_token_from_headers
+  def valid_auth_token?
     return false unless request.headers['Authorization']
-    token = request.headers['Authorization'].split.last
-    @decoded_token ||= Tokenizer.decode(token)
+    decoded_auth_token
+  end
+
+  def decoded_auth_token
+    @decoded_token ||= Tokenizer.decode(auth_token_from_header)
+  end
+
+  def auth_token_from_header
+    request.headers['Authorization'].split.last
   end
 
   def load_current_user
-    user_id = decoded_auth_token_from_headers[0]['payload']['user_id']
+    user_id = decoded_auth_token[0]['payload']['user_id']
     @current_user = User.find(user_id)
   end
 end
