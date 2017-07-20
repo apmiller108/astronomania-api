@@ -19,4 +19,11 @@ describe Asteroid::NearEarthObject do
       )
     end
   end
+
+  describe 'class methods' do
+    describe 'last_updated' do
+      xit 'returns the most recent update_at date' do
+      end
+    end
+  end
 end
