@@ -22,7 +22,12 @@ describe Asteroid::NearEarthObject do
 
   describe 'class methods' do
     describe 'last_updated' do
-      xit 'returns the most recent update_at date' do
+      it 'returns the most recent updated_at date' do
+        create_list :asteroid_near_earth_object, 3
+        Asteroid::NearEarthObject.last.update updated_at: Time.current + 1.day
+
+        expect(described_class.last_updated)
+          .to be_within(1.second).of(Time.current + 1.day)
       end
     end
   end

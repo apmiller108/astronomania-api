@@ -16,13 +16,13 @@ module Asteroid
       @near_earth_object_count = Asteroid::NearEarthObject.count
       @close_approach_count = Asteroid::CloseApproach.count
       @last_updated = Asteroid::NearEarthObject.last_updated
-      @source = source
+      @source = source_of_data
       @source_info_url = 'https://api.nasa.gov/api.html#NeoWS'
     end
 
     private
 
-    def source
+    def source_of_data
       "NEO data is from the NASA JPL Asteroid team "\
       "(http://neo.jpl.nasa.gov/). Data is imported from NASA's NeoWs "\
       "(Near Earth Object Web Service) a RESTful web service for near earth "\
