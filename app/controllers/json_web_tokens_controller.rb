@@ -1,6 +1,4 @@
 class JsonWebTokensController < ApplicationController
-  skip_before_action :authenticate_request, only: :create
-
   def create
     user = User.find_by_email! token_params[:email]
 

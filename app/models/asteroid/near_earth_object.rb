@@ -13,5 +13,9 @@ module Asteroid
     store :estimated_diameter, accessors: %i[kilometers meters miles feet]
 
     alias_attribute :id, :neo_reference_id
+
+    def self.last_updated
+      order(updated_at: :desc).limit(1).pluck(:updated_at).first
+    end
   end
 end
