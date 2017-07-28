@@ -46,6 +46,11 @@ container. For example:
   be authenticated by an Admin user.
 * Jobs are scheduled using AWS CloudWatch events and AWS Lambda.  Lambda functions are kept in [/aws_lambda_functions](https://github.com/apmiller108/astronomania-api/tree/master/lambda_functions).
 
+## API Documentation
+### Postman Public Docs
+* See the [Postman public docs site](https://documenter.getpostman.com/collection/view/264251-3f1ce49b-8c88-5e21-3376-4543adfcb348) 
+  for documentation concerning using the API.
+
 ## Astronomy Data
 
 ### NASA Public APIs
