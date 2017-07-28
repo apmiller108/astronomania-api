@@ -1,5 +1,5 @@
 module Asteroids
-  class NearEarthObjectStatsController < ApplicationController
+  class NearEarthObjectsStatsController < ApplicationController
     def show
       neo_stats = Asteroid::NearEarthObjectStats.new
     end
