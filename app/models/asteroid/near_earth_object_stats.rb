@@ -6,7 +6,8 @@ module Asteroid
                 :close_approach_count,
                 :last_updated,
                 :source,
-                :source_info_url
+                :source_info_url,
+                :id
 
     def self.model_name
       @_model_name ||= :asteroid_near_earth_object_stats
@@ -18,6 +19,7 @@ module Asteroid
       @last_updated = Asteroid::NearEarthObject.last_updated
       @source = source_of_data
       @source_info_url = 'https://api.nasa.gov/api.html#NeoWS'
+      @id = @last_updated.to_date
     end
 
     private
