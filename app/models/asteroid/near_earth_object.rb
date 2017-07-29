@@ -12,6 +12,7 @@ module Asteroid
 
     store :estimated_diameter,
           accessors: %i[kilometers meters miles feet],
+          coder: JSON
 
     alias_attribute :id, :neo_reference_id
 
