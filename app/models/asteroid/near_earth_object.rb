@@ -10,7 +10,8 @@ module Asteroid
 
     validates :name, :neo_reference_id, presence: true
 
-    store :estimated_diameter, accessors: %i[kilometers meters miles feet]
+    store :estimated_diameter,
+          accessors: %i[kilometers meters miles feet],
 
     alias_attribute :id, :neo_reference_id
 
