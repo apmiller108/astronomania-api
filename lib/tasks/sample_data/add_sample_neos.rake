@@ -16,7 +16,7 @@ namespace :sample_data do
         class_name: Asteroid::CloseApproach
       },
       {
-        file_path: 'asteroid_orbits.csv',
+        file_name: 'asteroid_orbits.csv',
         class_name: Asteroid::Orbit
       }
     ].freeze
@@ -28,12 +28,29 @@ namespace :sample_data do
     CSV_ATTRS.each do |attr|
       csv_path = Rails.root.join(*BASE_PATH, attr[:file_name])
       pluralized_name = attr[:class_name].to_s.underscore.pluralize
+
       puts "Adding #{pluralized_name}"
+
       CSV.foreach(csv_path, headers: true).with_index(1) do |row, i|
-        attr[:class_name].create row.to_h
+        row = row.to_h
+
+        case attr[:class_name].to_s
+        when 'Asteroid::NearEarthObject'
+          diameter = JSON.parse(row['estimated_diameter'])
+          if diameter.is_a? String
+            row['estimated_diameter'] = JSON.parse(diameter)
+          end
+        when 'Asteroid::CloseApproach'
+          row['relative_velocity'] = JSON.parse(row['relative_velocity'])
+          row['miss_distance'] = JSON.parse(row['miss_distance'])
+        end
+
+        attr[:class_name].create row
         print "--> #{i} #{pluralized_name} added \r"
         $stdout.flush
       end
+
+      puts "Done adding #{pluralized_name}          "
     end
   end
 end
