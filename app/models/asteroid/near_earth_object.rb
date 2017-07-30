@@ -2,11 +2,13 @@ module Asteroid
   class NearEarthObject < ApplicationRecord
     has_many :close_approaches,
              class_name: 'Asteroid::CloseApproach',
-             foreign_key: :asteroid_near_earth_object_neo_reference_id
+             foreign_key: :asteroid_near_earth_object_neo_reference_id,
+             dependent: :destroy
 
     has_one :orbit,
             class_name: 'Asteroid::Orbit',
-            foreign_key: :asteroid_near_earth_object_neo_reference_id
+            foreign_key: :asteroid_near_earth_object_neo_reference_id,
+            dependent: :destroy
 
     validates :name, :neo_reference_id, presence: true
 

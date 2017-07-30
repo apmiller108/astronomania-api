@@ -5,6 +5,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - !ruby/regexp /_spec\.rb$/
+    - !ruby/regexp /\.rake$/
 
 Metrics/LineLength:
   Max: 80
