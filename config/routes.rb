@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     resources :near_earth_objects, only: [:index, :show]
     resource :stats, only: [:show], controller: :near_earth_objects_stats
   end
+
+  resource :apod, only: [:show]
 end
