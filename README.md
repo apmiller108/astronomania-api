@@ -6,6 +6,11 @@
 ### Postman Public Docs
 * See the [Postman public docs site](https://documenter.getpostman.com/view/264251/astronomania/6mxaxAK) 
   for documentation concerning using the API.
+  
+## Astronomy Data
+
+### NASA Public APIs
+* Currently all data comes from [NASA Open APIs](https://api.nasa.gov/).  Daily background jobs are run populate the data base with data.
 
 ## Development
 
@@ -50,11 +55,6 @@ container. For example:
 * Jobs are started by sending `POST` request to `/admin/jobs` with the `job_type` in the payload. These requests must
   be authenticated by an Admin user.
 * Jobs are scheduled using AWS CloudWatch events and AWS Lambda.  Lambda functions are kept in [/aws_lambda_functions](https://github.com/apmiller108/astronomania-api/tree/master/lambda_functions).
-
-## Astronomy Data
-
-### NASA Public APIs
-* Currently all data comes from [NASA Open APIs](https://api.nasa.gov/).  Daily background jobs are run populate the data base with data.
 
 ## Client App Repos
 * [Astronomania Web App](https://github.com/apmiller108/astronomania)
