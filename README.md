@@ -2,6 +2,11 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b66599714f82423b8a1f374e79476f27)](https://www.codacy.com/app/apmiller108/astronomania-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apmiller108/astronomania-api&amp;utm_campaign=Badge_Grade)
 # Astronomania Ruby on Rails API
 
+## API Documentation
+### Postman Public Docs
+* See the [Postman public docs site](https://documenter.getpostman.com/view/264251/astronomania/6mxaxAK) 
+  for documentation concerning using the API.
+
 ## Development
 
 ### Docker
@@ -45,11 +50,6 @@ container. For example:
 * Jobs are started by sending `POST` request to `/admin/jobs` with the `job_type` in the payload. These requests must
   be authenticated by an Admin user.
 * Jobs are scheduled using AWS CloudWatch events and AWS Lambda.  Lambda functions are kept in [/aws_lambda_functions](https://github.com/apmiller108/astronomania-api/tree/master/lambda_functions).
-
-## API Documentation
-### Postman Public Docs
-* See the [Postman public docs site](https://documenter.getpostman.com/collection/view/264251-3f1ce49b-8c88-5e21-3376-4543adfcb348) 
-  for documentation concerning using the API.
 
 ## Astronomy Data
 
