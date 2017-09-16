@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User logs in' do
-  let :user { create :user }
+  let(:user) { create :user }
 
   context 'with valid credentials' do
     let :valid_credentials do

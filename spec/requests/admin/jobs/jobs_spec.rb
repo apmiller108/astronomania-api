@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe 'Creating Scheduled Jobs' do
-  after :each { Sidekiq::Worker.clear_all }
+  after(:each) { Sidekiq::Worker.clear_all }
 
   context 'admin user' do
-    let :user { create :user, :admin }
+    let(:user) { create :user, :admin }
 
     context 'valid job' do
       let :valid_params do
@@ -56,7 +56,7 @@ describe 'Creating Scheduled Jobs' do
   end
 
   context 'standard user' do
-    let :user { create :user }
+    let(:user) { create :user }
 
     it 'responds with 401 response' do
       post admin_jobs_path,
