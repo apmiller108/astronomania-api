@@ -47,7 +47,10 @@ class ApplicationController < ActionController::API
   end
 
   def load_current_user
-    user_id = decoded_auth_token[0]['payload']['user_id']
-    @current_user = User.find(user_id)
+    decoded_auth_token[0]['payload']['user_id'].tap do |user_id|
+      @current_user = User.find(user_id)
+    end
+  rescue ActiveRecord::RecordNotFound
+    render_unauthorized
   end
 end
