@@ -1,10 +1,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: postgres
+  # host: postgres
+  host: localhost
   password:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  user: postgres
+  # user: postgres
 development:
   <<: *default
   database: astronomania-api_development
