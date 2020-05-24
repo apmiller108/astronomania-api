@@ -14,16 +14,16 @@ module Asteroid
               presence: true
 
     store_attributes :relative_velocity do
-      kilometers_per_second BigDecimal
-      kilometers_per_hour BigDecimal
-      miles_per_hour BigDecimal
+      kilometers_per_second Axiom::Types::Decimal
+      kilometers_per_hour Axiom::Types::Decimal
+      miles_per_hour Axiom::Types::Decimal
     end
 
     store_attributes :miss_distance do
-      astronomical BigDecimal
-      lunar BigDecimal
-      kilometers BigDecimal
-      miles BigDecimal
+      astronomical Axiom::Types::Decimal
+      lunar Axiom::Types::Decimal
+      kilometers Axiom::Types::Decimal
+      miles Axiom::Types::Decimal
     end
   end
 end

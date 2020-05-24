@@ -14,7 +14,7 @@ gem 'jwt'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'rack-cors'
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 6.0'
 gem 'redis-rails'
 gem 'rollbar'
 gem 'sidekiq'
@@ -26,8 +26,6 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-clipboard'
-  gem 'pry-doc'
-  gem 'pry-docmore'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
@@ -45,11 +43,11 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'json_matchers'
   gem 'rspec'
   gem 'rspec-json_expectations'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 4.0.0'
   gem 'webmock'
 end
 

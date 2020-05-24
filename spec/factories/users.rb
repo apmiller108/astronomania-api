@@ -1,11 +1,11 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    email Faker::Internet.email
-    password 'password'
-    password_confirmation 'password'
+    email { Faker::Internet.email }
+    password { 'password' }
+    password_confirmation { 'password' }
 
     trait :admin do
-      admin true
+      admin { true }
     end
   end
 end

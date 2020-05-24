@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :apod do
-    copyright 'Gemini Obs.'
-    date '2017-06-25'
-    explanation <<~TEXT
+    copyright { 'Gemini Obs.' }
+    date { '2017-06-25' }
+    explanation { <<~TEXT }
       What created this gigantic hole?  The vast emission nebula N44 in our
       neighboring galaxy the Large Magellanic Cloud has a large, 250 light-year
       hole and astronomers are trying to figure out why.  One possibility is
@@ -16,10 +16,10 @@ FactoryGirl.define do
       Pachon in Chile.    Follow APOD on: Facebook,  Google Plus,  Instagram, or
       Twitter
     TEXT
-    hdurl 'https://apod.nasa.gov/apod/image/1706/n44_gemini_4059.jpg'
-    media_type 'image'
-    service_version 'v1'
-    title 'The N44 Superbubble'
-    url 'https://apod.nasa.gov/apod/image/1706/n44_gemini_960.jpg'
+    hdurl { 'https://apod.nasa.gov/apod/image/1706/n44_gemini_4059.jpg' }
+    media_type { 'image' }
+    service_version { 'v1' }
+    title { 'The N44 Superbubble' }
+    url { 'https://apod.nasa.gov/apod/image/1706/n44_gemini_960.jpg' }
   end
 end
