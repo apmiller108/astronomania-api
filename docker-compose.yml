@@ -11,7 +11,7 @@ app:
     - postgres
     - redis
 postgres:
-  image: postgres:9.6
+  image: postgres:10.14
   ports:
     - "5432"
 redis:
