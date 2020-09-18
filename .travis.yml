@@ -1,12 +1,36 @@
-language: ruby
-rvm:
-  - 2.7.1
-cache: bundler
-dist: trusty
+language: bash
+
+sudo: required
+
 services:
-  - postgresql
-addons:
-  postgresql: "10.14"
-before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database astronomaniaapi_test;' -U postgres
+  - docker
+
+env:
+  COMPOSE_VERSION: 1.26.2
+
+before_install:
+ - sudo rm /usr/local/bin/docker-compose
+ - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+ - docker --version
+ - docker-compose --version
+
+script:
+  - touch .env
+  - echo "POSTGRES_DB=${POSTGRES_DB}" >> .env
+  - echo "POSTGRES_USER=${POSTGRES_USER}" >> .env
+  - echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >> .env
+  - echo "POSTGRES_HOST=${POSTGRES_HOST}" >> .env
+  - echo "NASA_API_KEY=${NASA_API_KEY}" >> .env
+  - docker-compose up --detach --build
+  - docker ps -a
+  - docker-compose exec web bin/rails db:schema:load RAILS_ENV=test
+  - docker-compose exec web bundle exec rspec
+
+after_script:
+  - docker-compose down
+  - rm .env
+
+notifications:
+  email: false
