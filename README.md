@@ -24,24 +24,24 @@ This app is dockerized soley for development environment normalization. It's not
 Prefix commands with `docker-compose run app` to run them agaist the application 
 container. For example:
 
-* `docker-compose run app rails console` - runs the rails console
-* `docker-compose run app bash` - runs the shell
+* `docker-compose run web rails console` - runs the rails console
+* `docker-compose run web bash` - runs the shell
 
 ### Rspec
-* `docker-compose run app rspec` - run rpsec tests. Alternatively, open a bash
+* `docker-compose run web rspec` - run rpsec tests. Alternatively, open a bash
   prompt (see above) and run `rspec`.
 
 ### Postgres
-* `docker-compose run app rake db:setup` - Set up and seed database.
+* `docker-compose run web rake db:setup` - Set up and seed database.
 * NOTE: the `host` value must be set to `postgres` to work with docker
-* `docker-compoose run rake sample_data:add` - to add all sample data to the database.
+* `docker-compose run web rake sample_data:add` - to add all sample data to the database.
   Sample data is also split into groups, so if you just want users you can run
   `rake sample_data:add_users`. See [lib/tasks/sample/add_sample_data.rake](https://github.com/apmiller108/astronomania-api/blob/master/lib/tasks/sample/add_sample_data.rake) for all
   available `sample_data` tasks.
 
 ### Debugging with Pry and Docker
-* `docker ps` - get the app container id
-* `docker attach container_id` - attach to container stdin/out using the id from the above step.
+* `docker attach astronomania-api_web_1` - attach to container stdin/out using the id from the above step.
+* `crtl p ctrl q` to exit debugging without stopping the container.
 
 ## Deployment
 
