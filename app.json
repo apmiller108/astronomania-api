@@ -1,7 +1,7 @@
 {
   "name": "astronomania-api",
   "scripts": {
-    "postdeploy": "rake sample_data:add"
+    "postdeploy": "rake db:create db:schema:load sample_data:add"
   },
   "env": {
     "LANG": {
