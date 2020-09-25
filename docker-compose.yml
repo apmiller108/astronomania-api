@@ -11,14 +11,14 @@ services:
     ports:
       - "3000:3000"
     links:
-      - "database"
+      - "postgres"
       - "redis"
-  database:
+  postgres:
     image: "postgres:10.14"
     volumes:
       - 'postgres:/var/lib/postgresql/data'
     ports:
-      - "5432"
+      - "5432:5432"
     env_file:
       - ".env"
   redis:
@@ -29,7 +29,7 @@ services:
       - "6379"
   sidekiq:
     depends_on:
-      - "database"
+      - "postgres"
       - "redis"
     build: .
     volumes:
