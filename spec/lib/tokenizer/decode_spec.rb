@@ -29,7 +29,7 @@ describe Tokenizer::Decode do
 
   context 'expired token' do
     let :payload do
-      valid_payload.merge exp: 1.day.ago
+      valid_payload.merge exp: 1.day.ago.to_i
     end
 
     let :encoded_jwt do

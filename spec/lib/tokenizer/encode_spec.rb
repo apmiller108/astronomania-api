@@ -18,7 +18,7 @@ describe Tokenizer::Encode do
     let :payload do
       {
         user_id: 1,
-        exp: 7.days.from_now
+        exp: 7.days.from_now.to_i
       }
     end
 
