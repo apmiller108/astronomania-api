@@ -1,4 +1,5 @@
 {
+  "id": "file:/asteroid_orbit.json#",
   "type": "object",
   "required": [
     "orbit_id",
@@ -39,7 +40,6 @@
     "perihelion_time": { "type": "string" },
     "mean_anomaly": { "type": "string" },
     "mean_motion": { "type": "string" },
-    "equinox": { "type": "string" },
-    "updated_at": { "type": "string "}
+    "equinox": { "type": "string" }
   }
 }

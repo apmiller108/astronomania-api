@@ -10,8 +10,9 @@ require 'sidekiq/testing'
 require 'spec_helper'
 require 'webmock/rspec'
 
+JsonMatchers.schema_root = Rails.root.join('spec/support/api/schemas/')
 ActiveRecord::Migration.maintain_test_schema!
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|

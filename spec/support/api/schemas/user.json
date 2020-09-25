@@ -1,4 +1,5 @@
 {
+  "id": "file:/user.json#",
   "type": "object",
   "required": ["data"],
   "properties": {

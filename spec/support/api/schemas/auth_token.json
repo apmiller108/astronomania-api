@@ -1,4 +1,5 @@
 {
+  "id": "file:/auth_token.json#",
   "type": "object",
   "required": ["auth_token"],
   "properties": {

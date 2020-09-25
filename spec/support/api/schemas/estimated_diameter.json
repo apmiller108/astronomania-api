@@ -1,4 +1,5 @@
 {
+  "id": "file:/estimated_diameter.json#",
   "type": "object",
   "required": ["kilometers", "meters", "miles", "feet"],
   "properties": {

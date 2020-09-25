@@ -1,4 +1,5 @@
 {
+  "id": "file:/asteroid_near_earth_object.json",
   "type": "object",
   "required": ["data"],
   "properties": {
@@ -24,11 +25,11 @@
             "nasa_jpl_url": { "type": "string" },
             "absolute_magnitude_h": { "type": "number" },
             "is_potentially_hazardous_asteroid": { "type": "boolean" },
-            "orbital_data": { "$ref": "asteroid_orbit.json" },
-            "estimated_diameter": { "$ref": "estimated_diameter.json" },
+            "orbital_data": { "$ref": "file:/asteroid_orbit.json#" },
+            "estimated_diameter": { "$ref": "file:/estimated_diameter.json#" },
             "close_approaches": {
               "type": "array",
-              "items": { "$ref": "close_approach.json" }
+              "items": { "$ref": "file:/close_approach.json#" }
             }
           }
         }

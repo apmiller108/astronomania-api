@@ -1,4 +1,5 @@
 {
+  "id": "file:/apod.json#",
   "type": "object",
   "required": ["data"],
   "properties": {

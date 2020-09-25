@@ -1,4 +1,5 @@
 {
+  "id": "file:/close_approach.json#",
   "type": "object",
   "required": [
     "close_approach_date",

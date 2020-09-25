@@ -1,4 +1,5 @@
 {
+  "id": "file:/errors.json#",
   "type": "object",
   "required": ["errors"],
   "properties": {

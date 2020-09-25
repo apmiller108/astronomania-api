@@ -1,4 +1,5 @@
 {
+  "id": "file:/asteroid_near_earth_objects_stats.json",
   "type": "object",
   "required": ["data"],
   "properties": {
